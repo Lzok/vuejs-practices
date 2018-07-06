@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vue JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <!-- @click === v-on:click -->
+        <button @click="counter++">Increase</button>
+        <button @click="counter--">Decrease</button>
+        <button @click="secondCounter++">Increase Second</button>
+        <p>Counter | Second counter: {{ counter }} | {{ secondCounter }}</p>
+        <p>result method | output computed: {{ result() }} | {{ output }}</p>
+
+        <!-- :href === v-bind:href -->
+        <a :href="link">Link bind</a>
+    </div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            counter: 0,
+            secondCounter: 0,
+            link: 'https://google.com'
+        },
+        computed: {
+            output() {
+                console.log('In computed');
+                return this.counter > 3 ? 'Greater than 3' : 'Smaller than 3'
+            }
+        },
+        watch: {
+            counter(value) {
+                const vm = this; // Need to store in a const to not loose the scope
+                setTimeout(() => {
+                    vm.counter = 0;
+                }, 2000); // 2 seconds
+            }
+        },
+        methods: {
+            result() {
+                console.log('In method');
+                return this.counter > 3 ? 'Greater than 3' : 'Smaller than 3'
+            }
+        }
+    })
+</script>
+</body>
+</html>

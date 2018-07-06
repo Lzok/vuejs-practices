@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vue JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <button v-on:click="addOne">Click here</button>
+        <p>{{ counter }}</p>
+        <hr>
+        <button v-on:click="addTwo(2, $event)">Click here. I will add 2 and pass the $event object</button>
+        <p>{{ counterTwo }}</p>
+        <hr>
+        <p v-on:mousemove="updateCoordinates">
+            Coordinates: {{ x }} | {{ y }}
+        </p>
+        <hr>
+        <p>I will show an alert when a specific button is pressed in the following input (enter)</p>
+        <input type="text" v-on:keyup.enter="showAlert">
+    </div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            counter: 0,
+            counterTwo: 0,
+            x: 0,
+            y: 0
+        },
+        methods: {
+            addOne: function(event) {
+                // By default, Vue binds the event object. See in the HTML I didn't pass it
+                this.counter++;
+            },
+            addTwo: function(number, event) {
+                this.counterTwo += number;
+            },
+            updateCoordinates: function(event) {
+                this.x = event.clientX;
+                this.y = event.clientY;
+            },
+            showAlert: function() {
+                alert("Enter was pressed");
+            }
+        }
+    })
+</script>
+</body>
+</html>
