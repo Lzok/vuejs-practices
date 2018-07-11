@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vue JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <ul>
+            <li v-for="fruit in fruits">{{ fruit }}</li>
+
+            <!-- If we also want the element's index -->
+            <!-- The variable <index> can be called as you want -->
+            <li v-for="(fruit, index) in fruits">{{ fruit }} - {{ index }}</li>
+        </ul>
+
+        <!-- looping in a template -->
+        <template v-for="(fruit, i) in fruits">
+            <h5>{{ fruit }}</h5>
+            <span>{{ i }}</span>
+        </template>
+        <hr>
+
+        <!-- Loop through numbers -->
+        <span v-for="n in 5">{{ n }}</span>
+        <hr>
+
+        <!-- key prop is for vue to keep track of the element -->
+        <li v-for="(fruit, index) in fruits" :key="fruit">{{ fruit }} - {{ index }}</li>
+        <button @click="fruits.push('pear')">Add new fruit</button>
+        <hr>
+
+        <!-- One way to loop through objects -->
+        <ul>
+            <li v-for="hero in heroes">
+                <div v-for="(value, key, index) in hero">
+                    {{ key }}: {{ value }} ({{ index }})
+                </div>
+            </li>
+        </ul>
+    </div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            fruits: ['banana', 'orange', 'apple'],
+            heroes: [
+                { name: 'Iron Man', age: 34, power: 'Strength' },
+                { name: 'Robocop', age: 45, power: 'Indestructible' }
+            ]
+        }
+    })
+</script>
+</body>
+</html>

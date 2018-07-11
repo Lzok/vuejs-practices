@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vue JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <!-- v-if attaches or detaches the element from the DOM, not just hide it -->
+        <p v-if="show">You can see me</p>
+        <p v-else>You are reading v-else paragraph</p>
+        <!-- Nesting elements in a v-if template -->
+        <template v-if="show">
+            <h1>Heading inside template</h1>
+            <span>span inside a template</span>
+        </template>
+
+        <!-- v-show works similar than v-if but it just hide the element -->
+        <p v-show="show">You can also see me</p>
+        <button @click="show = !show">Switch show</button>
+    </div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            show: true
+        }
+    })
+</script>
+</body>
+</html>
