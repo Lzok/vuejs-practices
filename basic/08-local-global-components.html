@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vue JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app1">
+        <weather></weather>
+    </div>
+    <hr>
+    <div id="app2">
+        <weather-global></weather-global>
+    </div>
+<script>
+    // Local component
+    const weatherComponent = {
+        data: () => {
+            return {
+                weather: 'Clear'
+            }
+        },
+        template: `<h3>Weather: {{ weather }}
+                    <button @click="modifyWeather">Change weather</button>
+                   </h3>`,
+        methods: {
+            modifyWeather() {
+                this.weather = 'Rainy';
+            }
+        }
+    }
+
+    // Global component
+    Vue.component('weather-global', weatherComponent);
+
+    new Vue({
+        el: '#app1',
+        components: {
+            'weather': weatherComponent
+        }
+    });
+
+    new Vue({
+        el: '#app2'
+    });
+</script>
+</body>
+</html>
