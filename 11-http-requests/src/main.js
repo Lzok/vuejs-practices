@@ -4,7 +4,7 @@ import App from './App.vue'
 
 Vue.use(VueResource);
 
-Vue.http.options.root = 'https://vue-http-course.firebaseio.com/';
+Vue.http.options.root = 'https://your-firebase-url-here.firebaseio.com/';
 
 /*
 // Intercepting requests
