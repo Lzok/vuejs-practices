@@ -4,6 +4,22 @@ import App from './App.vue'
 
 Vue.use(VueResource);
 
+Vue.http.options.root = 'https://vue-http-course.firebaseio.com/';
+
+/*
+// Intercepting requests
+Vue.http.interceptors.push(request, next => {
+  console.log(request);
+  // e.g we can change the http verb of the request
+  // request.method == 'PUT';
+
+  // Intercepting responses
+  next( response => {
+    response.json = () => { return { messages: response.body } };
+  });
+});
+*/
+
 new Vue({
   el: '#app',
   render: h => h(App)
