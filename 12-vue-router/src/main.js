@@ -15,7 +15,18 @@ Vue.use(VueRouter);
 //const router = new VueRouter({ routes });
 const router = new VueRouter({
   routes,
-  mode: 'history' // Default mode is hash
+  mode: 'history', // Default mode is hash
+  scrollBehavior(to, from, savedPosition) {
+    if(savedPosition) return savedPosition;
+    if(to.hash) return { selector: to.hash };
+
+    return { x: 0, y: 0 };
+  }
+});
+
+router.beforeEach( (to, from, next) => {
+  console.log('Global before each route guard');
+  next(); // Allow the router to continue
 });
 
 new Vue({
