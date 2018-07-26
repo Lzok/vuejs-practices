@@ -1,24 +1,21 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import counter from './modules/counter';
+
+import getters from './getters';
+import mutations from './mutations';
+import actions from './actions';
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    counter: 0
+    value: 0
   },
-  getters: {
-    doubleCounter: state => { return state.counter * 2 },
-    stringCounter: state => { return `${state.counter} + clicks` }
-  },
-  mutations: {
-    // Mutations always have to run synchronously
-    // You don't have to run async code in mutations
-    increment: state => {
-      state.counter++;
-    },
-    decrement: state => {
-      state.counter--;
-    }
+  getters,
+  mutations,
+  actions,
+  modules: {
+    counter
   }
 });

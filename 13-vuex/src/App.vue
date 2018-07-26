@@ -8,6 +8,9 @@
         <hr>
         <result></result>
         <second-result></second-result>
+        <hr>
+        <input type="text" v-model="value">
+        <p>{{ value }}</p>
       </div>
     </div>
   </div>
@@ -18,8 +21,19 @@
   import Result from './components/Result.vue';
   import SecondResult from './components/SecondResult.vue';
   import SecondCounter from './components/SecondCounter.vue';
+  import * as types from './store/types';
 
   export default {
+    computed: {
+      value: {
+        get() {
+          return this.$store.getters.value;
+        },
+        set(value) {
+          this.$store.dispatch(types.UPDATE_VALUE, value)
+        }
+      }
+    },
     components: {
       Counter,
       Result,

@@ -8,13 +8,14 @@
 
 <script>
   import { mapGetters } from 'vuex';
+  import * as types from '../store/types';
 
   export default {
     computed: {
       someComputedProp(){ return 'Test mixing my own computed props with mapGetters' },
       ...mapGetters({
-        counter: 'doubleCounter',
-        numberClicks: 'stringCounter'
+        counter: types.DOUBLE_COUNTER,
+        numberClicks: types.STRING_COUNTER
       }),
       ownProp() { return 150; }
     }
